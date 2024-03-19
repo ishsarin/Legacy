@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { storage } from "../models/user.model.js";
 import AddStory from "./addStory.js";
+import Post from "../pages/Post.jsx";
+import "../style.scss";
 const HomePage = (props) => {
   const fetchData = async (e) => {
     const res = await fetch("http://localhost:5000/");
@@ -20,17 +22,7 @@ const HomePage = (props) => {
       <a className="btn btn-primary p-3 m-2" href="/add_story">
         Share your Story!!
       </a>
-      {info.map((data) => (
-        <div className="p-3 homepage_comments" key={data.id}>
-          <div>{data.text}</div>
-          {data.file === "" ? (
-            ""
-          ) : (
-            <img src={data.file} thumbnail fluid className="p-3" width={400} />
-          )}
-          <h6>{data.name}</h6>
-        </div>
-      ))}
+      <Post info={info} />
     </>
   );
 };
