@@ -6,12 +6,13 @@ body {
   background-color: #0e1630 !important;
   color: white;
   border-color: #01d293 !important;
-
+  margin-bottom: 20px;
   &-wrapper {
     padding-bottom: 12px;
   }
 
-  &-username {
+  &-username,
+  .comments-each_comment-username {
     font-weight: 600;
     color: #01d293;
   }
@@ -78,4 +79,56 @@ body {
 }
 .post-reactions-all {
   width: 0%;
+}
+
+.comments {
+  position: relative;
+
+  &-wrapper {
+    padding: 0px 0px 10px 0px !important;
+  }
+  &-list-group {
+    width: 100% !important;
+    padding: 5px;
+  }
+  &-input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 20px;
+    background-color: #808dad;
+    color: #01d293;
+    font-weight: 500;
+    border-color: #01d293;
+  }
+  &-send {
+    position: absolute;
+    right: 20px;
+    bottom: 8px;
+  }
+  &-send:hover {
+    cursor: pointer;
+  }
+  &-on_post {
+    padding-top: 5px;
+    text-align: left;
+  }
+  &-each_comment {
+    padding-block: 5px;
+    display: flex;
+    gap: 1rem;
+    &-comment {
+      font-weight: normal !important;
+    }
+  }
+}
+
+.comments-input::placeholder {
+  color: #01d293;
+  font-weight: 500;
+}
+
+.homepage_comments {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
 }
