@@ -6,9 +6,12 @@ import { FaRegThumbsUp } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
 import { FaFire } from "react-icons/fa6";
+import Comments from "../components/Comments";
 
 const Post = ({ info }) => {
   const [hover, setHover] = useState(false);
+
+  const [commentsClick, setCommentsClick] = useState(false);
 
   return (
     <div className="homepage_comments d-flex justify-content-center">
@@ -16,7 +19,10 @@ const Post = ({ info }) => {
         <Card
           className="w-25 post"
           key={index}
-          onMouseLeave={() => setHover(false)}
+          onMouseLeave={() => {
+            setHover(false);
+            // setCommentsClick(false);
+          }}
         >
           <Card.Img variant="top" src={data.file} />
           <Card.Body className="post-wrapper">
@@ -57,7 +63,13 @@ const Post = ({ info }) => {
                   </div>
                   <div>React</div>
                 </Card.Subtitle>
-                <Card.Subtitle className="post-comment">
+                <Card.Subtitle
+                  className="post-comment"
+                  onClick={() => {
+                    setCommentsClick(!commentsClick);
+                    setHover(false);
+                  }}
+                >
                   <div>
                     <FaComment />
                   </div>
@@ -66,6 +78,13 @@ const Post = ({ info }) => {
               </ListGroup.Item>
             </ListGroup>
           </Card.Body>
+          {commentsClick && (
+            <Card.Body>
+              <Card.Subtitle className="comments-wrapper">
+                <Comments />
+              </Card.Subtitle>
+            </Card.Body>
+          )}
         </Card>
       ))}
     </div>
