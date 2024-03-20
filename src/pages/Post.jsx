@@ -12,16 +12,6 @@ const Post = ({ info }) => {
 
   return (
     <div className="homepage_comments d-flex justify-content-center">
-      {/* {info.map((data) => (
-        {/* <div className="p-3 homepage_comments" key={data.id}>
-          <div>{data.text}</div>
-          {data.file === "" ? (
-            ""
-          ) : (
-            <img src={data.file} thumbnail fluid className="p-3" width={400} />
-          <h6>{data.name}</h6>
-        </div> */}
-
       {info.map((data, index) => (
         <Card
           className="w-25 post"
