@@ -1,5 +1,5 @@
 import express from "express";
-import User from "../src/models/user.model.js";
+import { User } from "../src/models/user.model.js";
 import cors from "cors";
 // const express = require("express");
 const app = express();

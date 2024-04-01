@@ -23,7 +23,7 @@ const AddStory = () => {
         relation: e.target.relation.value,
         file: imgUrl,
         likes: like,
-        comments: [],
+        comments: [{}],
       }),
     });
 
@@ -34,22 +34,22 @@ const AddStory = () => {
   const uploadFile = (e) => {
     e.preventDefault();
     if (image == null) return;
-
-    const imgRef = storage.child(`img/${image.name}`);
-    imgRef
-      .put(image)
-      .then((snapshot) => {
+    try {
+      const imgRef = storage.child(`img/${image.name}`);
+      imgRef.put(image).then((snapshot) => {
         return imgRef.getDownloadURL().then((url) => {
           // url is the download URL
           imgUrl = url;
           console.log(imgUrl);
         });
-      })
-      .catch((error) => {
-        // deal any errors
-        console.log("error");
       });
-    alert("Image Uploaded");
+      setTimeout(() => {
+        alert("Image Uploaded");
+      }, 2000);
+    } catch (error) {
+      // deal any errors
+      console.log("error");
+    }
     // console.log(image.name);
   };
   const [image, setImage] = useState(null);

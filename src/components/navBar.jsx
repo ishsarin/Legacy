@@ -4,12 +4,14 @@ import Navbar from "react-bootstrap/Navbar";
 
 const NavBar = () => {
   return (
-    <Navbar className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
+    <Navbar className="bg-body-tertiary navbar-header">
+      <Container className="navbar-container">
+        <Navbar.Brand href="#home" className="navbar-brand">
+          Legacy
+        </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
+          <Navbar.Text className=" navbar-signedin-text">
             Signed in as: <a href="#login">Mark Otto</a>
           </Navbar.Text>
         </Navbar.Collapse>

@@ -5,12 +5,20 @@ body {
 .post {
   background-color: #0e1630 !important;
   color: white;
-  border-color: #01d293 !important;
+  border-color: #8affdc !important;
   margin-bottom: 20px;
-  &-likes {
+
+  &-comment-count,
+  &-like-count {
+    color: white;
+    font-size: 18px;
+  }
+
+  &-like-btn {
     display: flex;
     gap: 5px;
     align-items: center;
+    padding-bottom: 4px;
   }
   &-wrapper {
     padding-bottom: 12px;
@@ -39,10 +47,10 @@ body {
     }
   }
 
-  &-react,
-  &-comment,
-  &-react-reactions {
-    color: #808dad;
+  &-like,
+  &-comment {
+    // color: #808dad;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: end;
@@ -67,7 +75,7 @@ body {
     }
   }
 
-  &-react:hover,
+  &-like:hover,
   &-comment:hover {
     cursor: pointer;
   }
@@ -101,9 +109,9 @@ body {
     padding: 8px;
     border-radius: 20px;
     background-color: #808dad;
-    color: #01d293;
-    font-weight: 500;
-    border-color: #01d293;
+    color: #8affdc;
+    font-weight: 400;
+    border-color: #8affdc;
   }
   &-send {
     position: absolute;
@@ -128,12 +136,40 @@ body {
 }
 
 .comments-input::placeholder {
-  color: #01d293;
-  font-weight: 500;
+  color: #8affdc;
+  font-weight: 400;
 }
 
 .homepage_comments {
   display: flex !important;
   flex-direction: column;
   align-items: center;
+}
+
+.navbar {
+  &-header {
+    display: flex;
+    justify-content: space-around;
+    background-color: black !important;
+    border-bottom: 1px solid grey;
+    width: 80%;
+    margin: auto;
+  }
+  &-brand {
+    font-size: 40px;
+    // font-family: cursive !important;
+    font-family: "Satisfy", cursive;
+    font-weight: 400;
+    color: yellow !important;
+  }
+  &-container {
+    display: flex;
+    justify-content: space-around !important;
+    // width: 85%;
+    // margin: auto;
+  }
+  &-signedin-text,
+  &-signedin-text a {
+    color: yellow !important;
+  }
 }
