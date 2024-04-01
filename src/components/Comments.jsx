@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAccordionButton } from "react-bootstrap";
 import { IoIosSend } from "react-icons/io";
 
-const Comments = () => {
+const Comments = ({ data }) => {
   const [comments, setComments] = useState([
     {
       username: "",

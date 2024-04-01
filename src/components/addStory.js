@@ -21,6 +21,7 @@ const AddStory = () => {
         name: e.target.name.value,
         relation: e.target.relation.value,
         file: imgUrl,
+        comments: [],
       }),
     });
 
