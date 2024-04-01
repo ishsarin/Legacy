@@ -7,6 +7,11 @@ body {
   color: white;
   border-color: #01d293 !important;
   margin-bottom: 20px;
+  &-likes {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
   &-wrapper {
     padding-bottom: 12px;
   }

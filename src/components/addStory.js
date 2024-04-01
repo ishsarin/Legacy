@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const AddStory = () => {
   let imgUrl;
   // const [imgUrl, setImgUrl] = useState("");
+  let like = 0;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,6 +22,7 @@ const AddStory = () => {
         name: e.target.name.value,
         relation: e.target.relation.value,
         file: imgUrl,
+        likes: like,
         comments: [],
       }),
     });
