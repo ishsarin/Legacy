@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { FaComment } from "react-icons/fa";
@@ -7,18 +7,40 @@ import { FaHeart } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
 import { FaFire } from "react-icons/fa6";
 import Comments from "../components/Comments";
+import { User, db, firebase } from "../models/user.model.js";
+import { IoIosSend } from "react-icons/io";
 
 const Post = ({ info }) => {
   // const [hover, setHover] = useState(false);
 
+  // const admin = require("firebase-admin");
+  // const FieldValue = admin.firestore.FieldValue;
+
   const [commentsClick, setCommentsClick] = useState(false);
 
-  const commentsFunction = (data) => {
-    // let filterArray = info.filter((id) => {
-    //   return id.id === data.id;
-    // });
-    // console.log(filterArray);
-    console.log(data.id);
+  const [like, setLike] = useState(0);
+
+  const commentsFunction = async (data) => {};
+
+  const likesFunction = async (data) => {
+    await User.doc(data.id).update({
+      likes: data.likes + 1,
+    });
+  };
+
+  const [comments, setComments] = useState([
+    {
+      username: "",
+      comment: "",
+    },
+  ]);
+
+  const sendComment = async (data) => {
+    const comment = document.querySelector(".comments-input");
+    await User.doc(data.id).update({
+      comments: firebase.firestore.FieldValue.arrayUnion(comment.value),
+    });
+    // console.log(data.id);
   };
 
   return (
@@ -66,18 +88,27 @@ const Post = ({ info }) => {
                   className="post-react"
                   // onMouseOver={() => setHover(true)}
                 >
-                  <div>
-                    <FaRegThumbsUp />
+                  <div className="post-like">{data.likes}</div>
+
+                  <div
+                    className="post-likes"
+                    onClick={() => {
+                      likesFunction(data);
+                    }}
+                  >
+                    <div>
+                      <FaRegThumbsUp />
+                    </div>
+                    <div>Like</div>
                   </div>
-                  <div>React</div>
                 </Card.Subtitle>
                 <Card.Subtitle
                   className="post-comment"
-                  onClick={() => {
-                    commentsFunction(data);
-                    setCommentsClick(!commentsClick);
-                    setHover(false);
-                  }}
+                  // onClick={() => {
+                  //   commentsFunction(data);
+                  //   setCommentsClick(!commentsClick);
+                  //   //   // setHover(false);
+                  // }}
                 >
                   <div>
                     <FaComment />
@@ -87,13 +118,41 @@ const Post = ({ info }) => {
               </ListGroup.Item>
             </ListGroup>
           </Card.Body>
-          {commentsClick && (
-            <Card.Body>
-              <Card.Subtitle className="comments-wrapper">
-                <Comments data={data} />
-              </Card.Subtitle>
-            </Card.Body>
-          )}
+          {/* {commentsClick && ( */}
+          <Card.Body>
+            <Card.Subtitle className="comments-wrapper">
+              {/* <Comments data={data} /> */}
+              <div className="comments">
+                <input
+                  type="text"
+                  placeholder="Enter your Comment..."
+                  className="comments-input"
+                  // onChange={(e) => sendComment(e)}
+                />
+
+                <div
+                  className="comments-send"
+                  onClick={() => sendComment(data)}
+                >
+                  <IoIosSend size={20} color="#01d293" />
+                </div>
+              </div>
+
+              {/* {comments.map((comment, index) => (
+                  <div id={index} className="comments-on_post">
+                    <div className="comments-each_comment">
+                      <div className="comments-each_comment-username">
+                        {comment.username}
+                      </div>
+                      <div className="comments-each_comment-comment">
+                        {comment.comment}
+                      </div>
+                    </div>
+                  </div>
+                ))} */}
+            </Card.Subtitle>
+          </Card.Body>
+          {/* )} */}
         </Card>
       ))}
     </div>

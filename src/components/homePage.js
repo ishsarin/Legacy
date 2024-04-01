@@ -7,14 +7,14 @@ const HomePage = (props) => {
   const fetchData = async (e) => {
     const res = await fetch("http://localhost:5000/");
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     setInfo(data);
   };
 
   const [info, setInfo] = useState([]);
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   return (
     <>
