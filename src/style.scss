@@ -6,7 +6,7 @@ body {
   background-color: #0e1630 !important;
   color: white;
   border-color: #8affdc !important;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 
   &-comment-count,
   &-like-count {
@@ -154,7 +154,20 @@ body {
     border-bottom: 1px solid grey;
     width: 80%;
     margin: auto;
+    position: sticky;
+    top: 0;
+    z-index: 9;
   }
+  &-share-story {
+    width: 50%;
+
+    a {
+      color: black;
+      font-size: 20px;
+      font-family: "Satisfy", cursive;
+    }
+  }
+
   &-brand {
     font-size: 40px;
     // font-family: cursive !important;
@@ -164,12 +177,23 @@ body {
   }
   &-container {
     display: flex;
-    justify-content: space-around !important;
+    justify-content: space-between !important;
     // width: 85%;
     // margin: auto;
   }
-  &-signedin-text,
+  &-signedin {
+    &-text {
+      color: yellow !important;
+    }
+    &-header {
+      flex-grow: 0;
+    }
+  }
   &-signedin-text a {
     color: yellow !important;
   }
+}
+
+.main-header {
+  margin-block: 1rem;
 }
