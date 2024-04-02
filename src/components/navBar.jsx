@@ -10,7 +10,12 @@ const NavBar = () => {
           Legacy
         </Navbar.Brand>
         <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
+        <Navbar.Brand className="navbar-share-story">
+          <a className="btn btn-warning p-3 m-2 w-100" href="/add_story">
+            Share your Story!!
+          </a>
+        </Navbar.Brand>
+        <Navbar.Collapse className="navbar-signedin-header">
           <Navbar.Text className=" navbar-signedin-text">
             Signed in as: <a href="#login">Mark Otto</a>
           </Navbar.Text>

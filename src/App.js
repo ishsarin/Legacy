@@ -7,7 +7,7 @@ import NavBar from "./components/navBar.jsx";
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      {/* <NavBar /> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
