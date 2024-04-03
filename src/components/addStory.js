@@ -23,7 +23,8 @@ const AddStory = () => {
         relation: e.target.relation.value,
         file: imgUrl,
         likes: like,
-        comments: [{}],
+        // comments: [{}],
+        comments: [],
       }),
     });
 

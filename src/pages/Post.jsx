@@ -26,28 +26,32 @@ const Post = ({ info }) => {
     });
   };
 
-  const [comments, setComments] = useState([
-    {
-      username: "",
-      comment: "",
-    },
-  ]);
+  const [comments, setComments] = useState("");
+
+  const typeComment = (e) => {
+    // console.log(e.target.value);
+    setComments(e.target.value);
+  };
 
   const sendComment = async (data) => {
-    const comment = document.querySelector(".comments-input");
+    // const comment = document.querySelector(".comments-input");
 
-    if (comment.value.length > 0) {
-      await User.doc(data.id).update({
-        comments: firebase.firestore.FieldValue.arrayUnion({
-          username: "ish",
-          comment: comment.value,
-        }),
-      });
-    } else {
-      alert("Please Enter a Comment!!");
-    }
+    // const val = typeComment(data);
+
     console.log(comments);
-    comment.value = "";
+
+    await User.doc(data.id).update({
+      comments: firebase.firestore.FieldValue.arrayUnion(comments),
+      // comments: firebase.firestore.FieldValue.arrayUnion({
+      //   username: "ish",
+      //   comment: comment.value,
+      // }),
+    });
+    // setComments(comment.value);
+    // } else {
+    //   alert("Please Enter a Comment!!");
+    // }
+    // comment.value = "";
   };
 
   return (
@@ -107,7 +111,7 @@ const Post = ({ info }) => {
                   type="text"
                   placeholder="Enter your Comment..."
                   className="comments-input"
-                  // onChange={(e) => sendComment(e)}
+                  onChange={(e) => typeComment(e)}
                 />
 
                 <div
@@ -121,11 +125,8 @@ const Post = ({ info }) => {
               {data.comments.map((comment, index) => (
                 <div id={index} className="comments-on_post">
                   <div className="comments-each_comment">
-                    <div className="comments-each_comment-username">
-                      {comment.username}
-                    </div>
                     <div className="comments-each_comment-comment">
-                      {comment.comment}
+                      {comment.commets}
                     </div>
                   </div>
                 </div>
