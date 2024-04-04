@@ -24,7 +24,12 @@ const AddStory = () => {
         file: imgUrl,
         likes: like,
         // comments: [{}],
-        comments: [],
+        comments: [
+          {
+            // username: "",
+            // comment: "",
+          },
+        ],
       }),
     });
 

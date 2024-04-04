@@ -19,14 +19,24 @@ import "firebase/storage/dist/index.cjs.js";
 //   measurementId: "G-83XGLZB2VN",
 // };
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBQZ0u6ir9N1bqcKKHe5WZvWM3hUHBDL2o",
+//   authDomain: "online-app-ee05b.firebaseapp.com",
+//   projectId: "online-app-ee05b",
+//   storageBucket: "online-app-ee05b.appspot.com",
+//   messagingSenderId: "841226681637",
+//   appId: "1:841226681637:web:f27452c516f79bf00baecc",
+//   measurementId: "G-8PHZFSCP3M",
+// };
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBQZ0u6ir9N1bqcKKHe5WZvWM3hUHBDL2o",
-  authDomain: "online-app-ee05b.firebaseapp.com",
-  projectId: "online-app-ee05b",
-  storageBucket: "online-app-ee05b.appspot.com",
-  messagingSenderId: "841226681637",
-  appId: "1:841226681637:web:f27452c516f79bf00baecc",
-  measurementId: "G-8PHZFSCP3M",
+  apiKey: "AIzaSyDkqyrRKx8_3zrPeu9UuOMMNDG_qpzfYGA",
+  authDomain: "newproject1-e616b.firebaseapp.com",
+  projectId: "newproject1-e616b",
+  storageBucket: "newproject1-e616b.appspot.com",
+  messagingSenderId: "396855029190",
+  appId: "1:396855029190:web:a0e20053cfd6a5948956c7",
+  measurementId: "G-0VN07MK3MS",
 };
 
 const app = firebase.initializeApp(firebaseConfig);

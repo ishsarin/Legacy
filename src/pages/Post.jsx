@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { FaComment } from "react-icons/fa";
@@ -12,21 +12,13 @@ import { IoIosSend } from "react-icons/io";
 import { FaThumbsUp } from "react-icons/fa";
 
 const Post = ({ info }) => {
-  const [commentsClick, setCommentsClick] = useState(false);
-
-  const [like, setLike] = useState(0);
-
-  const commentsFunction = async (data) => {};
-
-  const comLen = document.querySelector(".comments-input");
-
   const likesFunction = async (data) => {
     await User.doc(data.id).update({
       likes: data.likes + 1,
     });
   };
 
-  const [comments, setComments] = useState("");
+  let [comments, setComments] = useState("");
 
   const typeComment = (e) => {
     // console.log(e.target.value);
@@ -34,24 +26,11 @@ const Post = ({ info }) => {
   };
 
   const sendComment = async (data) => {
-    // const comment = document.querySelector(".comments-input");
-
-    // const val = typeComment(data);
-
-    console.log(comments);
+    // console.log(comments);
 
     await User.doc(data.id).update({
       comments: firebase.firestore.FieldValue.arrayUnion(comments),
-      // comments: firebase.firestore.FieldValue.arrayUnion({
-      //   username: "ish",
-      //   comment: comment.value,
-      // }),
     });
-    // setComments(comment.value);
-    // } else {
-    //   alert("Please Enter a Comment!!");
-    // }
-    // comment.value = "";
   };
 
   return (
@@ -85,16 +64,10 @@ const Post = ({ info }) => {
                     {/* <div>Like</div> */}
                   </div>
                 </Card.Subtitle>
-                <Card.Subtitle
-                  className="post-comment"
-                  // onClick={() => {
-                  //   commentsFunction(data);
-                  //   setCommentsClick(!commentsClick);
-                  //   //   // setHover(false);
-                  // }}
-                >
+                <Card.Subtitle className="post-comment">
                   <div className="post-comment-count">
-                    {data.comments.length - 1}
+                    {/* {data.comments.length - 1} */}
+                    {data.comments.length}
                   </div>
                   <div className="post-comment-btn">
                     <FaComment size={20} color="#94e11d" />
@@ -106,12 +79,14 @@ const Post = ({ info }) => {
           </Card.Body>
           <Card.Body>
             <Card.Subtitle className="comments-wrapper">
-              <div className="comments">
+              <div className="comments" key={index}>
                 <input
                   type="text"
                   placeholder="Enter your Comment..."
                   className="comments-input"
-                  onChange={(e) => typeComment(e)}
+                  onChange={(e) => {
+                    typeComment(e);
+                  }}
                 />
 
                 <div
@@ -126,7 +101,7 @@ const Post = ({ info }) => {
                 <div id={index} className="comments-on_post">
                   <div className="comments-each_comment">
                     <div className="comments-each_comment-comment">
-                      {comment.commets}
+                      {comment}
                     </div>
                   </div>
                 </div>
