@@ -25,9 +25,14 @@ const Post = ({ info }) => {
     setComments(e.target.value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setComments("");
+  };
+
   const sendComment = async (data) => {
     console.log(comments);
-    console.log(data);
+    // console.log(data);
 
     await User.doc(data.id).update({
       comments: firebase.firestore.FieldValue.arrayUnion({
@@ -70,8 +75,7 @@ const Post = ({ info }) => {
                 </Card.Subtitle>
                 <Card.Subtitle className="post-comment">
                   <div className="post-comment-count">
-                    {/* {data.comments.length - 1} */}
-                    {data.comments.length}
+                    {data.comments.length - 1}
                   </div>
                   <div className="post-comment-btn">
                     <FaComment size={20} color="#94e11d" />
@@ -83,7 +87,11 @@ const Post = ({ info }) => {
           </Card.Body>
           <Card.Body>
             <Card.Subtitle className="comments-wrapper">
-              <div className="comments" key={index}>
+              <form
+                className="comments"
+                key={index}
+                onSubmit={(e) => handleSubmit(e)}
+              >
                 <input
                   type="text"
                   placeholder="Enter your Comment..."
@@ -97,9 +105,11 @@ const Post = ({ info }) => {
                   className="comments-send"
                   onClick={() => sendComment(data)}
                 >
-                  <IoIosSend size={20} color="#8affdc" />
+                  <button className="btn comments-send-btn" type="submit">
+                    <IoIosSend size={20} color="#8affdc" />
+                  </button>
                 </div>
-              </div>
+              </form>
 
               {data.comments.map((comment, index) => (
                 <div id={index} className="comments-on_post">
