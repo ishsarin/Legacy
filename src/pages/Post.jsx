@@ -18,7 +18,7 @@ const Post = ({ info }) => {
     });
   };
 
-  const [comments, setComments] = useState("");
+  let [comments, setComments] = useState("");
 
   const typeComment = (e) => {
     // console.log(e.target.value);
@@ -26,14 +26,10 @@ const Post = ({ info }) => {
   };
 
   const sendComment = async (data) => {
-    console.log(comments);
-    console.log(data);
+    // console.log(comments);
 
     await User.doc(data.id).update({
-      comments: firebase.firestore.FieldValue.arrayUnion({
-        username_commenting_on_post: "ish sarin",
-        comment_on_post: comments,
-      }),
+      comments: firebase.firestore.FieldValue.arrayUnion(comments),
     });
   };
 
@@ -105,10 +101,7 @@ const Post = ({ info }) => {
                 <div id={index} className="comments-on_post">
                   <div className="comments-each_comment">
                     <div className="comments-each_comment-comment">
-                      {comment.username_commenting_on_post}
-                    </div>
-                    <div className="comments-each_comment-comment">
-                      {comment.comment_on_post}
+                      {comment}
                     </div>
                   </div>
                 </div>

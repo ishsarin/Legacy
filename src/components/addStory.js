@@ -23,12 +23,11 @@ const AddStory = () => {
         relation: e.target.relation.value,
         file: imgUrl,
         likes: like,
-        // comments: [{}],        //incase only for comments
+        // comments: [{}],
         comments: [
-          //for comments + username
-
           {
-            comment_on_post: "",
+            // username: "",
+            // comment: "",
           },
         ],
       }),
