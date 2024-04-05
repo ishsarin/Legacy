@@ -26,10 +26,6 @@ const Post = ({ info }) => {
   };
 
   const sendComment = async (data) => {
-    // const comment = document.querySelector(".comments-input");
-
-    // const val = typeComment(data);
-
     console.log(comments);
     console.log(data);
 
