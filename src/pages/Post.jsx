@@ -22,6 +22,7 @@ const Post = ({ info }) => {
 
   const typeComment = (e) => {
     // console.log(e.target.value);
+
     setComments(e.target.value);
   };
 
@@ -40,6 +41,8 @@ const Post = ({ info }) => {
         comment_on_post: comments,
       }),
     });
+    const val = document.querySelector(".comments-input");
+    val.value = "";
   };
 
   return (
