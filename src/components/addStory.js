@@ -3,10 +3,16 @@ import { storage } from "../models/user.model.js";
 import HomePage from "./homePage.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { firebase } from "../models/user.model.js";
+
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db } from "../models/user.model.js";
+
 const AddStory = () => {
   let imgUrl;
   // const [imgUrl, setImgUrl] = useState("");
   let like = 0;
+  const [image, setImage] = useState(null);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,6 +37,7 @@ const AddStory = () => {
             comment_on_post: "",
           },
         ],
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       }),
     });
 
@@ -39,13 +46,16 @@ const AddStory = () => {
   };
 
   const uploadFile = (e) => {
+    console.log(image);
     e.preventDefault();
     if (image == null) return;
     try {
-      const imgRef = storage.child(`img/${image.name}`);
-      imgRef.put(image).then((snapshot) => {
-        return imgRef.getDownloadURL().then((url) => {
-          // url is the download URL
+      // const imgRef = storage.child(`img/${image.name}`);
+      const imgRef = ref(storage, `images/${image.name}`);
+      // imgRef.put(image).then((snapshot) => {
+      uploadBytes(imgRef, image).then((snapshot) => {
+        return getDownloadURL(imgRef).then((url) => {
+          //   // url is the download URL
           imgUrl = url;
           console.log(imgUrl);
         });
@@ -55,11 +65,10 @@ const AddStory = () => {
       }, 2000);
     } catch (error) {
       // deal any errors
-      console.log("error");
+      console.log(error);
     }
     // console.log(image.name);
   };
-  const [image, setImage] = useState(null);
   return (
     <>
       <form onSubmit={handleSubmit} action="/">
