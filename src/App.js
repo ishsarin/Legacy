@@ -6,7 +6,6 @@ import HomePage from "./components/homePage.js";
 import NavBar from "./components/navBar.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import SignIn from "./pages/SignIn.jsx";
-
 function App() {
   return (
     <div className="App">
