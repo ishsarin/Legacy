@@ -1,7 +1,7 @@
 import express from "express";
 import { User } from "../src/models/user.model.js";
 import cors from "cors";
-import { doc, addDoc } from "firebase/firestore";
+import { collection, doc, addDoc } from "firebase/firestore";
 
 import { query, orderBy, getDocs } from "firebase/firestore";
 import { db } from "../src/models/user.model.js";
@@ -22,6 +22,7 @@ app.get("/", async (req, res) => {
   const orderedQuery = query(User, orderBy("timestamp", "desc"));
 
   // const snapshot = await User.orderBy("timestamp", "desc").get();
+
   const snapshot = await getDocs(orderedQuery);
 
   const list = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -29,13 +30,14 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/add_story", async (req, res) => {
+  //adding the data provided at /add_story to firebase
   const data = req.body;
-  // console.log(data);
-  // await User.add(data);
-  
-    await addDoc(doc(db, "Users"), data);
-    console.log("user added");
-  }
+
+  const docRef = await addDoc(collection(db, "Users"), data);
+  // await setDoc(doc(db, "Users"), data);
+
+  console.log("user added");
+  // }
 });
 
 app.listen(PORT, () => {

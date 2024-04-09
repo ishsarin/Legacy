@@ -4,6 +4,7 @@ import HomePage from "./homePage.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { firebase } from "../models/user.model.js";
+import { serverTimestamp } from "firebase/firestore/lite";
 
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db } from "../models/user.model.js";
@@ -15,7 +16,6 @@ const AddStory = () => {
   const [image, setImage] = useState(null);
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     window.location.href = "/";
     const res = await fetch("/add_story", {
       method: "POST",
@@ -37,10 +37,11 @@ const AddStory = () => {
             comment_on_post: "",
           },
         ],
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        timestamp: serverTimestamp(),
       }),
     });
-
+    console.log(res);
     const data = res.json();
     if (data.status === 500) console.log("Error");
   };

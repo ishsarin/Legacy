@@ -11,11 +11,17 @@ import { User, db, firebase } from "../models/user.model.js";
 import { IoIosSend } from "react-icons/io";
 import { FaThumbsUp } from "react-icons/fa";
 
+import { doc, updateDoc } from "firebase/firestore";
+
 const Post = ({ info }) => {
   const likesFunction = async (data) => {
-    await User.doc(data.id).update({
+    const ref = doc(db, "Users", data.id);
+    await updateDoc(ref, {
       likes: data.likes + 1,
     });
+    // await User.doc(data.id).update({
+    //   likes: data.likes + 1,
+    // });
   };
 
   const [comments, setComments] = useState("");
