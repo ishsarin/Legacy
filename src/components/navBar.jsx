@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
+import UserContext from "../context/UserContext";
 
 const NavBar = () => {
+  const { user } = useContext(UserContext);
+
   return (
     <Navbar className="bg-body-tertiary navbar-header">
       <Container className="navbar-container">
@@ -17,7 +20,7 @@ const NavBar = () => {
         </Navbar.Brand>
         <Navbar.Collapse className="navbar-signedin-header">
           <Navbar.Text className=" navbar-signedin-text">
-            Signed in as: <a href="#login">Mark Otto</a>
+            Signed in as: <a href="#login">{user === "" ? "" : user}</a>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
