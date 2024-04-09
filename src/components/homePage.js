@@ -19,12 +19,12 @@ const HomePage = (props) => {
   });
 
   return (
-    <UserContextProvider>
+    <>
       <NavBar />
       <h1 className="main-header">The Legacy Continues</h1>
 
       <Post info={info} />
-    </UserContextProvider>
+    </>
   );
 };
 

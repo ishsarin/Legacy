@@ -3,7 +3,9 @@ import { auth } from "../models/user.model";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import SignIn from "./SignIn";
 import { useContext } from "react";
-import UserContext from "../context/UserContext";
+import { updateProfile } from "firebase/auth";
+import { UserContext } from "../context/UserContextProvider";
+import { Link } from "react-router-dom";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,8 +16,16 @@ const SignUp = () => {
   const signUpUser = () => {
     createUserWithEmailAndPassword(auth, email, password).then((value) => {
       console.log(value);
-      setUser("ish");
+      setUser(username);
     });
+
+    updateProfile(auth.currentUser, {
+      displayName: username,
+    })
+      .then((val) => {
+        console.log("username");
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -46,7 +56,9 @@ const SignUp = () => {
           placeholder="Enter the Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={signUpUser}>Submit</button>
+        <Link to="/homepage">
+          <button onClick={signUpUser}>Submit</button>
+        </Link>
       </div>
     </div>
   );

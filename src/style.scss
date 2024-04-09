@@ -2,11 +2,39 @@ body {
   background-color: black;
   color: yellow;
 }
+
 .post {
   background-color: #0e1630 !important;
   color: white;
   border-color: #8affdc !important;
   margin-bottom: 2rem;
+
+  &-btn {
+    width: 11% !important;
+  }
+
+  &-choosefile {
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  &-caption {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-uploadbtn,
+  &-uploadbtn:hover {
+    color: black;
+    padding-block: 5px;
+    padding-inline: 30px;
+    background: white;
+  }
+  &-details {
+    align-items: center;
+    padding-top: 3rem;
+  }
 
   &-comment-count,
   &-like-count {
@@ -192,13 +220,82 @@ body {
     }
     &-header {
       flex-grow: 0;
+      flex-direction: column;
     }
   }
   &-signedin-text a {
+    color: yellow !important;
+  }
+  &-signup {
     color: yellow !important;
   }
 }
 
 .main-header {
   margin-block: 1rem;
+}
+
+.signin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  &-header {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+  &-btn,
+  &-btn:hover {
+    color: black !important;
+    background-color: white !important;
+    width: 100%;
+  }
+
+  &-wrapper {
+    padding: 10px;
+    display: flex;
+    justify-self: center;
+    text-align: left;
+    align-items: center;
+
+    &-email {
+      margin-right: 33px !important;
+      padding-right: 0px !important;
+    }
+
+    label {
+      margin-bottom: 0px !important;
+    }
+  }
+}
+
+.signin-signupbtn h6,
+.signin-guestbtn h6 {
+  margin-right: 2rem;
+}
+.signin-signupbtn,
+.signin-guestbtn {
+  display: flex;
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin-left: 2rem;
+}
+.signin-guestbtn {
+  margin-left: 4rem !important;
+}
+
+.signup,
+.guest-login,
+.signup:hover,
+.guest-login:hover {
+  background: white;
+  color: black;
+  text-decoration: none;
 }

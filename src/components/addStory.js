@@ -8,12 +8,17 @@ import { serverTimestamp } from "firebase/firestore/lite";
 
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db } from "../models/user.model.js";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContextProvider.jsx";
 
 const AddStory = () => {
   let imgUrl;
   // const [imgUrl, setImgUrl] = useState("");
   let like = 0;
   const [image, setImage] = useState(null);
+
+  const { user } = useContext(UserContext);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     window.location.href = "/homepage";
@@ -71,14 +76,18 @@ const AddStory = () => {
     // console.log(image.name);
   };
   return (
-    <>
-      <form onSubmit={handleSubmit} action="/homepage">
-        <div class="mb-3 p-3">
+    <div className="post-details">
+      <h1>Post Details</h1>
+      <form onSubmit={handleSubmit} action="/homepage" className="mb-2">
+        <div class="mb-3 p-3 post-caption">
+          <label className="form-label p-2" form-label>
+            Caption
+          </label>
           <textarea
             name="textarea"
             id=""
-            cols="30"
-            rows="10"
+            cols="120"
+            rows="2"
             placeholder="Tell you Story!!"
           ></textarea>
         </div>
@@ -86,7 +95,8 @@ const AddStory = () => {
           <label class="form-label p-2">Name</label>
           <input
             type="text"
-            placeholder="Enter your Name"
+            value={user}
+            // placeholder="Enter your Name"
             required
             name="name"
           />
@@ -97,31 +107,34 @@ const AddStory = () => {
           </label>
           <input type="text" placeholder="Your Relation" name="relation" />
         </div>
-        <div class="mb-3 ">
+        <div class="mb-5">
           <label htmlFor="" form-label className="p-2">
             Share this moment by uploading a picture!!{" "}
           </label>
           <input
             type="file"
             name="file"
+            className="post-choosefile w-20"
             onChange={(event) => {
               setImage(event.target.files[0]);
             }}
           />
-          <button onClick={uploadFile}>upload</button>
+          <button className="btn post-uploadbtn " onClick={uploadFile}>
+            Upload
+          </button>
         </div>
 
-        <button class="btn btn-primary w-10" type="submit">
+        <button class="btn btn-primary post-btn" type="submit">
           Post
         </button>
       </form>
 
       <Link to="/homepage" style={{ textDecoration: "none", color: "white" }}>
-        <button className="btn btn-danger p-2 mt-2 w-10 ">
+        <button className="btn btn-danger p-2 mt-2 w-20 ">
           Back To Home Page
         </button>
       </Link>
-    </>
+    </div>
   );
 };
 
