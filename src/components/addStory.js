@@ -16,7 +16,7 @@ const AddStory = () => {
   const [image, setImage] = useState(null);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    window.location.href = "/";
+    window.location.href = "/homepage";
     const res = await fetch("/add_story", {
       method: "POST",
       headers: {
@@ -72,7 +72,7 @@ const AddStory = () => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit} action="/">
+      <form onSubmit={handleSubmit} action="/homepage">
         <div class="mb-3 p-3">
           <textarea
             name="textarea"
@@ -116,7 +116,7 @@ const AddStory = () => {
         </button>
       </form>
 
-      <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+      <Link to="/homepage" style={{ textDecoration: "none", color: "white" }}>
         <button className="btn btn-danger p-2 mt-2 w-10 ">
           Back To Home Page
         </button>

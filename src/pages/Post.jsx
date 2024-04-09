@@ -10,9 +10,8 @@ import Comments from "../components/Comments";
 import { User, db, firebase } from "../models/user.model.js";
 import { IoIosSend } from "react-icons/io";
 import { FaThumbsUp } from "react-icons/fa";
-
-import { doc, updateDoc } from "firebase/firestore";
-
+import { doc, updateDoc, setDoc, addDoc } from "firebase/firestore";
+import { arrayUnion } from "firebase/firestore";
 const Post = ({ info }) => {
   const likesFunction = async (data) => {
     const ref = doc(db, "Users", data.id);
@@ -39,16 +38,29 @@ const Post = ({ info }) => {
 
   const sendComment = async (data) => {
     console.log(comments);
-    // console.log(data);
+    console.log(data.comments);
 
-    await User.doc(data.id).update({
-      comments: firebase.firestore.FieldValue.arrayUnion({
+    // await User.doc(data.id).update({
+    //   comments: firebase.firestore.FieldValue.arrayUnion({
+    //     username_commenting_on_post: "ish sarin",
+    //     comment_on_post: comments,
+    //   }),
+    // });
+    if (comments.length > 0) {
+      const ref = doc(db, "Users", data.id);
+      const commentData = {
         username_commenting_on_post: "ish sarin",
         comment_on_post: comments,
-      }),
-    });
+      };
+
+      await updateDoc(ref, {
+        comments: arrayUnion(commentData),
+      });
+    }
+
     const val = document.querySelector(".comments-input");
     val.value = "";
+    setComments("");
   };
 
   return (
@@ -120,10 +132,22 @@ const Post = ({ info }) => {
                 </div>
               </form>
 
-              {data.comments.map((comment, index) => (
+              {/* {data.map((comment, index) => (
                 <div id={index} className="comments-on_post">
                   <div className="comments-each_comment">
                     <div className="comments-each_comment-comment">
+                      {comment.username_commenting_on_post}
+                    </div>
+                    <div className="comments-each_comment-comment">
+                      {comment.comment_on_post}
+                    </div>
+                  </div>
+                </div>
+              ))} */}
+              {data.comments.map((comment, index) => (
+                <div id={index} className="comments-on_post">
+                  <div className="comments-each_comment">
+                    <div className="comments-each_comment-username">
                       {comment.username_commenting_on_post}
                     </div>
                     <div className="comments-each_comment-comment">

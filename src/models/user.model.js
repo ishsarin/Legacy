@@ -9,6 +9,9 @@ import "firebase/storage";
 // import "firebase/compat/firestore";
 import { getFirestore, collection } from "firebase/firestore";
 import { getStorage, ref } from "firebase/storage";
+
+import { getAuth } from "firebase/auth";
+
 // import { getAuth } from "firebase/auth/dist/index.cjs.js";
 // const { createUserWithEmailAndPassword } = require("firebase/auth");
 // import { getStorage } from "firebase/storage";
@@ -47,7 +50,7 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 // const db = firebase.firestore();
 const db = getFirestore(app);
-
+const auth = getAuth(app);
 // const auth = firebase.getAuth(app);
 
 // const storage = firebase.storage().ref();
@@ -56,4 +59,4 @@ const storageref = ref(db);
 
 const storage = getStorage(app);
 const User = collection(db, "Users");
-export { User, db, firebase, storage };
+export { User, db, firebase, storage, auth };
