@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { FaComment } from "react-icons/fa";
@@ -12,6 +12,8 @@ import { IoIosSend } from "react-icons/io";
 import { FaThumbsUp } from "react-icons/fa";
 import { doc, updateDoc, setDoc, addDoc } from "firebase/firestore";
 import { arrayUnion } from "firebase/firestore";
+import { UserContext } from "../context/UserContextProvider.jsx";
+
 const Post = ({ info }) => {
   const likesFunction = async (data) => {
     const ref = doc(db, "Users", data.id);
@@ -22,6 +24,8 @@ const Post = ({ info }) => {
     //   likes: data.likes + 1,
     // });
   };
+
+  const { user } = useContext(UserContext);
 
   const [comments, setComments] = useState("");
 
@@ -49,7 +53,7 @@ const Post = ({ info }) => {
     if (comments.length > 0) {
       const ref = doc(db, "Users", data.id);
       const commentData = {
-        username_commenting_on_post: "ish sarin",
+        username_commenting_on_post: user,
         comment_on_post: comments,
       };
 

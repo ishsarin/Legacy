@@ -299,3 +299,27 @@ body {
   color: black;
   text-decoration: none;
 }
+
+.signup {
+  &-header {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+  &-wrapper {
+    padding: 10px;
+    display: flex;
+    justify-self: center;
+    text-align: left;
+    align-items: center;
+  }
+  &-btn,
+  &-btn:hover {
+    color: black;
+    background-color: white;
+    width: 100%;
+  }
+}
