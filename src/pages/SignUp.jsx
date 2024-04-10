@@ -15,51 +15,97 @@ const SignUp = () => {
 
   const signUpUser = () => {
     createUserWithEmailAndPassword(auth, email, password).then((value) => {
-      console.log(value);
+      console.log("username:", username);
+      value.displayName = username;
       setUser(username);
     });
-
-    updateProfile(auth.currentUser, {
-      displayName: username,
-    })
-      .then((val) => {
-        console.log("username");
-      })
-      .catch((error) => console.log(error));
+    // updateProfile(auth.currentUser, {
+    //   displayName: username,
+    // })
+    //   .then((val) => {
+    //     console.log(val);
+    //   })
+    //   .catch((error) => console.log(error));
   };
 
   return (
-    <div>
+    <div className="container signin">
       <h1>SignUp Page</h1>
-      <div>
-        <label htmlFor="">Username</label>
-        <input
-          type="text"
-          required
-          value={username}
-          placeholder="Enter the Username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label htmlFor="">Email</label>
-        <input
-          type="email"
-          required
-          value={email}
-          placeholder="Enter the Email Address"
-          onChange={(e) => setEmail(e.target.value)}
-        />
+      <div className="signin-header">
+        <div className=" signin-wrapper mb-2">
+          <label className="form-label p-1 signin-wrapper-email" htmlFor="">
+            Email
+          </label>
+          <input
+            type="email"
+            required
+            value={email}
+            placeholder="Enter the Email Address"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className=" signin-wrapper mb-2">
+          <label className="form-label p-1" htmlFor="">
+            Username
+          </label>
+          <input
+            type="text"
+            required
+            value={username}
+            placeholder="Enter the Username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
 
-        <label htmlFor="password">Password</label>
-        <input
-          value={password}
-          type="password"
-          placeholder="Enter the Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className=" signin-wrapper mb-2">
+          <label className="form-label p-1" htmlFor="">
+            Password
+          </label>
+          <input
+            value={password}
+            type="password"
+            placeholder="Enter the Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button className="btn w-20 signup-btn" onClick={signUpUser}>
+          Submit
+        </button>
+      </div>
+      {/* <div className="signup-header">
+        <div className="signin-wrapper mb-2">
+          <label htmlFor="">Email</label>
+          <input
+            type="email"
+            required
+            value={email}
+            placeholder="Enter the Email Address"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="signin-wrapper mb-2">
+          <label htmlFor="">Username</label>
+          <input
+            type="text"
+            required
+            value={username}
+            placeholder="Enter the Username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="signin-wrapper mb-2">
+          <label htmlFor="password">Password</label>
+          <input
+            value={password}
+            type="password"
+            placeholder="Enter the Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
         <Link to="/homepage">
           <button onClick={signUpUser}>Submit</button>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };

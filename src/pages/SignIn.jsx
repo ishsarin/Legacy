@@ -13,13 +13,14 @@ const SignIn = () => {
 
   const { setUser } = useContext(UserContext);
 
-  const signInUser = () => {
+  const signInUser = (e) => {
+    e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((value) => {
         console.log("signIn success");
-        // console.log(value);
+        console.log(value);
+        console.log(username);
         setUser(username);
-        window.location.href = "/homepage";
       })
       .catch((error) => console.log(error));
   };
@@ -28,7 +29,7 @@ const SignIn = () => {
     <div className="container signin">
       <h1>Sign In Page</h1>
 
-      <div className="signin-header ">
+      <div className="signin-header">
         <div className=" signin-wrapper mb-2">
           <label className="form-label p-1 signin-wrapper-email" htmlFor="">
             Email
@@ -65,7 +66,7 @@ const SignIn = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button className="btn signin-btn " onClick={signInUser}>
+        <button className="btn signin-btn " onClick={(e) => signInUser(e)}>
           Submit
         </button>
       </div>
@@ -77,7 +78,7 @@ const SignIn = () => {
       </div>
       <div className="signin-guestbtn">
         <h6>
-          Or you can view posts as
+          Or continue as
           <Link to="/homepage" style={{ marginLeft: "8px" }}>
             {/* <button className="btn guest-login">Guest Login</button> */}
             Guest
