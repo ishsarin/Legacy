@@ -98,7 +98,11 @@ const SignIn = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button className="btn signin-btn " onClick={(e) => signInUser(e)}>
+            <button
+              className="btn signin-btn "
+              onClick={(e) => signInUser(e)}
+              disabled={show === true ? true : false}
+            >
               Submit
             </button>
           </div>
