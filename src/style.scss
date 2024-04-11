@@ -328,3 +328,9 @@ body {
   margin-left: 5px;
   cursor: pointer;
 }
+.btn-signout,
+.btn-signout:hover {
+  color: yellow;
+  text-decoration: underline;
+  cursor: pointer;
+}

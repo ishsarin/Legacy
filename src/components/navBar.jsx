@@ -11,16 +11,12 @@ const NavBar = () => {
 
   const [loggedout, setLoggedOut] = useState(true);
 
-  const auth = getAuth();
-
   const signOutBtn = () => {
     setLoggedOut(!loggedout);
-    // signOut(auth)
-    //   .then((value) => {
-    //     console.log("User Signed Out!", value);
-    //   })
-    //   .catch((error) => console.log(error));
-    // window.location.href = "/";
+  };
+
+  const addStory = () => {
+    window.location.href = "/add_story";
   };
 
   return (
@@ -33,13 +29,15 @@ const NavBar = () => {
           <Navbar.Toggle />
 
           <Navbar.Brand className="navbar-share-story">
-            <a
+            {/* <Link to="/add_story"> */}
+            <button
               className="btn btn-warning p-3 m-2 w-100 share-story"
-              // href="/add_story"
-              // onClick={checkLogin}
+              onClick={addStory}
+              disabled={loggedout && user === "Guest" ? true : false}
             >
               Share your Story!!
-            </a>
+            </button>
+            {/* </Link> */}
           </Navbar.Brand>
           <Navbar.Collapse className="navbar-signedin-header">
             <Navbar.Text className=" navbar-signedin-text">
@@ -50,12 +48,15 @@ const NavBar = () => {
             </Navbar.Text>
             {loggedout === true && user != "Guest" ? (
               <Navbar.Text className=" navbar-signedin-text">
-                <Link to="/homepage" onClick={signOutBtn}>
+                <button className="btn btn-signout" onClick={signOutBtn}>
                   Signout
-                </Link>
+                </button>
               </Navbar.Text>
             ) : (
-              <Navbar.Text className=" navbar-signedin-text">
+              <Navbar.Text
+                className=" navbar-signedin-text"
+                onClick={() => setLoggedOut(!loggedout)}
+              >
                 <a href="/">Login</a>
               </Navbar.Text>
             )}
