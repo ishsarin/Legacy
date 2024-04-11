@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { storage } from "../models/user.model.js";
 import AddStory from "./addStory.js";
 import Post from "../pages/Post.jsx";
 import "../style.scss";
 import NavBar from "./navBar.jsx";
-import UserContextProvider from "../context/UserContextProvider.jsx";
+import UserContextProvider, {
+  UserContext,
+} from "../context/UserContextProvider.jsx";
 const HomePage = (props) => {
   const fetchData = async (e) => {
     const res = await fetch("http://localhost:5000/");

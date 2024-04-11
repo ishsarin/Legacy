@@ -4,7 +4,9 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContextProvider";
-
+import HomePage from "../components/homePage.js";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,79 +15,112 @@ const SignIn = () => {
 
   const { setUser } = useContext(UserContext);
 
+  const [login, setLogin] = useState(false);
+
+  const { user } = useContext(UserContext);
+  const [show, setShow] = useState(false);
+
   const signInUser = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((value) => {
         console.log("signIn success");
-        console.log(value);
-        console.log(username);
+        // console.log(value);
         setUser(username);
+        setLogin(!login);
+        console.log(user);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setShow(!show);
+      });
+  };
+
+  const guestLogin = (e) => {
+    e.preventDefault();
+
+    setUser("Guest");
+    setLogin(!login);
   };
 
   return (
-    <div className="container signin">
-      <h1>Sign In Page</h1>
+    <>
+      {show ? (
+        <Alert variant="danger" onClose={() => setShow(!show)} dismissible>
+          <Alert.Heading>Invalid Email or Password!</Alert.Heading>
+          <Alert.Heading>Please try Again 😄</Alert.Heading>
+        </Alert>
+      ) : (
+        ""
+      )}
 
-      <div className="signin-header">
-        <div className=" signin-wrapper mb-2">
-          <label className="form-label p-1 signin-wrapper-email" htmlFor="">
-            Email
-          </label>
-          <input
-            type="email"
-            required
-            value={email}
-            placeholder="Enter the Email Address"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className=" signin-wrapper mb-2">
-          <label className="form-label p-1" htmlFor="">
-            Username
-          </label>
-          <input
-            type="text"
-            required
-            value={username}
-            placeholder="Enter the Username"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
+      {login === false ? (
+        <div className="container signin">
+          <h1>Sign In Page</h1>
 
-        <div className=" signin-wrapper mb-2">
-          <label className="form-label p-1" htmlFor="">
-            Password
-          </label>
-          <input
-            value={password}
-            type="password"
-            placeholder="Enter the Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="signin-header">
+            <div className=" signin-wrapper mb-2">
+              <label className="form-label p-1 signin-wrapper-email" htmlFor="">
+                Email
+              </label>
+              <input
+                type="email"
+                required
+                value={email}
+                placeholder="Enter the Email Address"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className=" signin-wrapper mb-2">
+              <label className="form-label p-1" htmlFor="">
+                Username
+              </label>
+              <input
+                type="text"
+                required
+                value={username}
+                placeholder="Enter the Username"
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  setUser(e.target.value);
+                }}
+              />
+            </div>
+
+            <div className=" signin-wrapper mb-2">
+              <label className="form-label p-1" htmlFor="">
+                Password
+              </label>
+              <input
+                value={password}
+                type="password"
+                placeholder="Enter the Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button className="btn signin-btn " onClick={(e) => signInUser(e)}>
+              Submit
+            </button>
+          </div>
+          <div className="signin-signupbtn">
+            <h6>Don't have account, make one?</h6>
+            <Link to="/SignUp">
+              <button className="btn signup">SignUp</button>
+            </Link>
+          </div>
+          <div className="signin-guestbtn">
+            <h6>
+              Or continue as
+              <span className="guest-login" onClick={(e) => guestLogin(e)}>
+                Guest Login
+              </span>
+            </h6>
+          </div>
         </div>
-        <button className="btn signin-btn " onClick={(e) => signInUser(e)}>
-          Submit
-        </button>
-      </div>
-      <div className="signin-signupbtn">
-        <h6>Don't have account, make one?</h6>
-        <Link to="/SignUp">
-          <button className="btn signup">SignUp</button>
-        </Link>
-      </div>
-      <div className="signin-guestbtn">
-        <h6>
-          Or continue as
-          <Link to="/homepage" style={{ marginLeft: "8px" }}>
-            {/* <button className="btn guest-login">Guest Login</button> */}
-            Guest
-          </Link>
-        </h6>
-      </div>
-    </div>
+      ) : (
+        <HomePage />
+      )}
+    </>
   );
 };
 
