@@ -285,16 +285,15 @@ body {
   justify-content: center;
   align-items: center;
   padding: 5px;
-  margin-left: 2rem;
+  margin-left: 5rem;
 }
 .signin-guestbtn {
-  margin-left: 4rem !important;
+  margin-left: 0px !important;
+  padding-left: 0px !important;
 }
 
 .signup,
-.guest-login,
-.signup:hover,
-.guest-login:hover {
+.signup:hover {
   background: white;
   color: black;
   text-decoration: none;
@@ -322,4 +321,10 @@ body {
     background-color: white;
     width: 100%;
   }
+}
+.guest-login {
+  color: blue;
+  text-decoration: underline;
+  margin-left: 5px;
+  cursor: pointer;
 }
