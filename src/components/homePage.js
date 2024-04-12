@@ -7,6 +7,7 @@ import NavBar from "./navBar.jsx";
 import UserContextProvider, {
   UserContext,
 } from "../context/UserContextProvider.jsx";
+
 const HomePage = (props) => {
   const fetchData = async (e) => {
     const res = await fetch("http://localhost:5000/");
@@ -15,6 +16,7 @@ const HomePage = (props) => {
     setInfo(data);
   };
 
+  const { user } = useContext(UserContext);
   const [info, setInfo] = useState([]);
   useEffect(() => {
     fetchData();
@@ -23,7 +25,13 @@ const HomePage = (props) => {
   return (
     <>
       <NavBar />
-      <h1 className="main-header">The Legacy Continues</h1>
+      <div className="main-header">
+        <div>
+          The greatest legacy one can pass on to one's children and
+          grandchildren is not money....
+        </div>
+        <div>but rather a legacy of character and faith.</div>
+      </div>
 
       <Post info={info} />
     </>
