@@ -97,7 +97,8 @@ const AddStory = () => {
             type="text"
             value={user}
             // placeholder="Enter your Name"
-            required
+            // required
+            disabled={true}
             name="name"
           />
         </div>
