@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { storage } from "../models/user.model.js";
-import HomePage from "./homePage.js";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { firebase } from "../models/user.model.js";
 import { serverTimestamp } from "firebase/firestore/lite";
 
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { db } from "../models/user.model.js";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContextProvider.jsx";
 
