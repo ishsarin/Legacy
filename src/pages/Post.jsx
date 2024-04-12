@@ -1,16 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { FaComment } from "react-icons/fa";
-import { FaRegThumbsUp } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
-import { AiFillLike } from "react-icons/ai";
-import { FaFire } from "react-icons/fa6";
-import Comments from "../components/Comments";
-import { User, db, firebase } from "../models/user.model.js";
+import { db } from "../models/user.model.js";
 import { IoIosSend } from "react-icons/io";
 import { FaThumbsUp } from "react-icons/fa";
-import { doc, updateDoc, setDoc, addDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { arrayUnion } from "firebase/firestore";
 import { UserContext } from "../context/UserContextProvider.jsx";
 

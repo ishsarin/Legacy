@@ -8,7 +8,7 @@ import firebase from "firebase/compat/app";
 import "firebase/storage";
 // import "firebase/compat/firestore";
 import { getFirestore, collection } from "firebase/firestore";
-import { getStorage, ref } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 
 import { getAuth } from "firebase/auth";
 
@@ -54,8 +54,6 @@ const auth = getAuth(app);
 // const auth = firebase.getAuth(app);
 
 // const storage = firebase.storage().ref();
-
-const storageref = ref(db);
 
 const storage = getStorage(app);
 const User = collection(db, "Users");

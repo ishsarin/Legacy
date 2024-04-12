@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { auth } from "../models/user.model";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import SignIn from "./SignIn";
 import { useContext } from "react";
-import { updateProfile } from "firebase/auth";
 import { UserContext } from "../context/UserContextProvider";
 import { Link } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
 import HomePage from "../components/homePage";
 const SignUp = () => {
   const [email, setEmail] = useState("");

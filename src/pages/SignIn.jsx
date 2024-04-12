@@ -4,9 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContextProvider";
-import HomePage from "../components/homePage.js";
 import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {

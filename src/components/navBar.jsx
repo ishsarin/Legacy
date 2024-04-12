@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { UserContext } from "../context/UserContextProvider";
-import { Link, useNavigate } from "react-router-dom";
-import { getAuth, signOut } from "firebase/auth";
-import SignIn from "../pages/SignIn";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const { user } = useContext(UserContext);
@@ -56,7 +54,7 @@ const NavBar = () => {
                 {!loggedout ? "Guest" : user}
               </span>
             </Navbar.Text>
-            {loggedout === true && user != "Guest" ? (
+            {loggedout === true && user !== "Guest" ? (
               <Navbar.Text className=" navbar-signedin-text">
                 <button className="btn btn-signout" onClick={signOutBtn}>
                   Signout
