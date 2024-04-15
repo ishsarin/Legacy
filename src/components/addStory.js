@@ -79,7 +79,7 @@ const AddStory = () => {
   return (
     <div className="post-details">
       <h1>Post Details</h1>
-      <form onSubmit={handleSubmit} action="/homepage" className="mb-2">
+      <form onSubmit={handleSubmit} className="mb-2">
         <div class="mb-3 p-3 post-caption">
           <label className="form-label p-2" form-label>
             Caption
