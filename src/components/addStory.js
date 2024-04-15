@@ -6,7 +6,7 @@ import { serverTimestamp } from "firebase/firestore/lite";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContextProvider.jsx";
-
+import { useNavigate } from "react-router-dom";
 const AddStory = () => {
   let imgUrl;
   // const [imgUrl, setImgUrl] = useState("");
@@ -15,8 +15,12 @@ const AddStory = () => {
 
   const { user } = useContext(UserContext);
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let path = "/homepage";
+    navigate(path);
     // window.location.href = "/homepage";
     const res = await fetch(
       "https://legacy-f3np-1mj086o7h-ish-sarins-projects.vercel.app/add_story",
@@ -60,12 +64,12 @@ const AddStory = () => {
     e.preventDefault();
     if (image == null) return;
 
+    alert("Please wait for your Image to be Uploaded!");
     try {
       // const imgRef = storage.child(`img/${image.name}`);
       const imgRef = ref(storage, `images/${image.name}`);
       // imgRef.put(image).then((snapshot) => {
       uploadBytes(imgRef, image).then((snapshot) => {
-        alert("Please wait for your Image to be Uploaded!");
         return getDownloadURL(imgRef).then((url) => {
           //   // url is the download URL
           imgUrl = url;
