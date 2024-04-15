@@ -22,6 +22,8 @@ const AddStory = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        key: "Access-Control-Allow-Origin",
+        value: "*",
       },
       body: JSON.stringify({
         // id: uniqid(),
