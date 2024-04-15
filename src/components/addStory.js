@@ -7,11 +7,18 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContextProvider.jsx";
 import { useNavigate } from "react-router-dom";
+import { addDoc } from "firebase/firestore";
+import { collection } from "firebase/firestore";
+import { db } from "../models/user.model.js";
 const AddStory = () => {
   let imgUrl;
   // const [imgUrl, setImgUrl] = useState("");
   let like = 0;
   const [image, setImage] = useState(null);
+
+  const [text, setText] = useState("");
+  const [relation, setRelation] = useState("");
+  const [postbtn, setPostBtn] = useState(false);
 
   const { user } = useContext(UserContext);
 
@@ -22,38 +29,58 @@ const AddStory = () => {
     let path = "/homepage";
     navigate(path);
     // window.location.href = "/homepage";
-    const res = await fetch("https://legacy-nxxp.onrender.com/", {
-      mode: "no-cors",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        source: "/manifest.webmanifest",
+    // const res = await fetch("https://legacy-nxxp.onrender.com/", {
+    //   mode: "no-cors",
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     source: "/manifest.webmanifest",
 
-        key: "Access-Control-Allow-Origin",
-        value: "*",
-      },
-      body: JSON.stringify({
-        // id: uniqid(),
-        text: e.target.textarea.value,
-        name: e.target.name.value,
-        relation: e.target.relation.value,
-        file: imgUrl,
-        likes: like,
-        // comments: [{}],        //incase only for comments
-        comments: [
-          //for comments + username
+    //     key: "Access-Control-Allow-Origin",
+    //     value: "*",
+    //   },
+    //   body: JSON.stringify({
+    //     // id: uniqid(),
+    //     text: e.target.textarea.value,
+    //     name: e.target.name.value,
+    //     relation: e.target.relation.value,
+    //     file: imgUrl,
+    //     likes: like,
+    //     // comments: [{}],        //incase only for comments
+    //     comments: [
+    //       //for comments + username
 
-          {
-            comment_on_post: "",
-          },
-        ],
-        // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        timestamp: serverTimestamp(),
-      }),
-    });
-    console.log(res);
-    const data = res.json();
-    if (data.status === 500) console.log("Error");
+    //       {
+    //         comment_on_post: "",
+    //       },
+    //     ],
+    //     // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    //     timestamp: serverTimestamp(),
+    //   }),
+    // });
+    // console.log(res);
+    // const data = res.json();
+    // if (data.status === 500) console.log("Error");
+
+    const res = {
+      text: text,
+      name: e.target.name.value,
+      relation: relation,
+      file: imgUrl,
+      likes: like,
+      comments: [
+        {
+          comment__on_post: "",
+        },
+      ],
+      timestamp: serverTimestamp(),
+    };
+    const dataRes = JSON.stringify(res);
+    const data = JSON.parse(dataRes);
+
+    const docData = await addDoc(collection(db, "Users"), data);
+
+    // console.log(docData);
   };
 
   const uploadFile = (e) => {
@@ -72,6 +99,7 @@ const AddStory = () => {
           imgUrl = url;
           console.log(imgUrl);
           alert("Image Uploaded!😄");
+          setPostBtn(!postbtn);
         });
       });
     } catch (error) {
@@ -94,6 +122,9 @@ const AddStory = () => {
             cols="120"
             rows="2"
             placeholder="Tell you Story!!"
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
           ></textarea>
         </div>
         <div class="mb-3">
@@ -111,7 +142,14 @@ const AddStory = () => {
           <label htmlFor="" form-label className="p-2">
             Relation
           </label>
-          <input type="text" placeholder="Your Relation" name="relation" />
+          <input
+            type="text"
+            placeholder="Your Relation"
+            name="relation"
+            onChange={(e) => {
+              setRelation(e.target.value);
+            }}
+          />
         </div>
         <div class="mb-5">
           <label htmlFor="" form-label className="p-2">
@@ -130,7 +168,11 @@ const AddStory = () => {
           </button>
         </div>
 
-        <button class="btn btn-primary post-btn" type="submit">
+        <button
+          class="btn btn-primary post-btn"
+          type="submit"
+          disabled={postbtn === false ? true : false}
+        >
           Post
         </button>
       </form>

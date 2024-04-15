@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContextProvider";
 import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -41,7 +42,7 @@ const SignIn = () => {
   const guestLogin = (e) => {
     e.preventDefault();
 
-    setUser("Guest");
+    setUser(`Guest_${uuidv4().substring(0, 3)}`);
     setLogin(!login);
     let path = "/homepage";
     navigate(path);
