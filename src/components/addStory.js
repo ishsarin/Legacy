@@ -17,7 +17,7 @@ const AddStory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    window.location.href = "/homepage";
+    // window.location.href = "/homepage";
     const res = await fetch(
       "https://legacy-f3np-1mj086o7h-ish-sarins-projects.vercel.app/add_story",
       {
