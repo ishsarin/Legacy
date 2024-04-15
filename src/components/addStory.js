@@ -18,7 +18,8 @@ const AddStory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     window.location.href = "/homepage";
-    const res = await fetch("/add_story", {
+    // const res = await fetch("/add_story", {
+    const res = await fetch("https://legacy-f3np.vercel.app/add_story", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
