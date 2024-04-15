@@ -21,6 +21,7 @@ const AddStory = () => {
     const res = await fetch(
       "https://legacy-f3np-1mj086o7h-ish-sarins-projects.vercel.app/add_story",
       {
+        mode: "no-cors",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
