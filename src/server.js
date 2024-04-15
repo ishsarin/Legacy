@@ -29,7 +29,8 @@ app.get("/", async (req, res) => {
   res.send(list);
 });
 
-app.post("/add_story", async (req, res) => {
+// app.post("/add_story", async (req, res) => {
+app.post("https://legacy-nxxp.onrender.com/", async (req, res) => {
   //adding the data provided at /add_story to firebase
   const data = req.body;
 
