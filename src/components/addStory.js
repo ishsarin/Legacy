@@ -22,38 +22,35 @@ const AddStory = () => {
     let path = "/homepage";
     navigate(path);
     // window.location.href = "/homepage";
-    const res = await fetch(
-      "https://legacy-f3np-1mj086o7h-ish-sarins-projects.vercel.app/add_story",
-      {
-        mode: "no-cors",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          source: "/manifest.webmanifest",
+    const res = await fetch("/add_story", {
+      mode: "no-cors",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        source: "/manifest.webmanifest",
 
-          key: "Access-Control-Allow-Origin",
-          value: "*",
-        },
-        body: JSON.stringify({
-          // id: uniqid(),
-          text: e.target.textarea.value,
-          name: e.target.name.value,
-          relation: e.target.relation.value,
-          file: imgUrl,
-          likes: like,
-          // comments: [{}],        //incase only for comments
-          comments: [
-            //for comments + username
+        key: "Access-Control-Allow-Origin",
+        value: "*",
+      },
+      body: JSON.stringify({
+        // id: uniqid(),
+        text: e.target.textarea.value,
+        name: e.target.name.value,
+        relation: e.target.relation.value,
+        file: imgUrl,
+        likes: like,
+        // comments: [{}],        //incase only for comments
+        comments: [
+          //for comments + username
 
-            {
-              comment_on_post: "",
-            },
-          ],
-          // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          timestamp: serverTimestamp(),
-        }),
-      }
-    );
+          {
+            comment_on_post: "",
+          },
+        ],
+        // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        timestamp: serverTimestamp(),
+      }),
+    });
     console.log(res);
     const data = res.json();
     if (data.status === 500) console.log("Error");

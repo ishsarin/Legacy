@@ -29,20 +29,16 @@ app.get("/", async (req, res) => {
   res.send(list);
 });
 
-// app.post("/add_story", async (req, res) => {
-app.post(
-  "https://legacy-f3np-1mj086o7h-ish-sarins-projects.vercel.app/add_story",
-  async (req, res) => {
-    //adding the data provided at /add_story to firebase
-    const data = req.body;
+app.post("/add_story", async (req, res) => {
+  //adding the data provided at /add_story to firebase
+  const data = req.body;
 
-    const docRef = await addDoc(collection(db, "Users"), data);
-    // await setDoc(doc(db, "Users"), data);
+  const docRef = await addDoc(collection(db, "Users"), data);
+  // await setDoc(doc(db, "Users"), data);
 
-    console.log("user added");
-    // }
-  }
-);
+  console.log("user added");
+  // }
+});
 
 app.listen(PORT, () => {
   console.log(`server running on ${PORT}`);
