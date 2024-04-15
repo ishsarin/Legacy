@@ -56,8 +56,10 @@ const AddStory = () => {
     console.log(image);
     e.preventDefault();
     if (image == null) return;
+
     try {
       // const imgRef = storage.child(`img/${image.name}`);
+      alert("Please wait for your Image to be Uploaded!");
       const imgRef = ref(storage, `images/${image.name}`);
       // imgRef.put(image).then((snapshot) => {
       uploadBytes(imgRef, image).then((snapshot) => {
@@ -65,11 +67,9 @@ const AddStory = () => {
           //   // url is the download URL
           imgUrl = url;
           console.log(imgUrl);
+          alert("Image Uploaded!😄");
         });
       });
-      setTimeout(() => {
-        alert("Image Uploaded");
-      }, 2000);
     } catch (error) {
       // deal any errors
       console.log(error);
