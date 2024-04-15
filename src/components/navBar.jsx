@@ -54,7 +54,7 @@ const NavBar = () => {
                 {!loggedout ? "Guest" : user}
               </span>
             </Navbar.Text>
-            {loggedout === true && user !== "Guest" ? (
+            {loggedout === true && user.substring(0, 5) !== "Guest" ? (
               <Navbar.Text className=" navbar-signedin-text">
                 <button className="btn btn-signout" onClick={signOutBtn}>
                   Signout

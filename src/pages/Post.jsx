@@ -4,7 +4,8 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { FaComment } from "react-icons/fa";
 import { db } from "../models/user.model.js";
 import { IoIosSend } from "react-icons/io";
-import { FaThumbsUp } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+
 import { doc, updateDoc } from "firebase/firestore";
 import { arrayUnion } from "firebase/firestore";
 import { UserContext } from "../context/UserContextProvider.jsx";
@@ -88,7 +89,7 @@ const Post = ({ info }) => {
                     }}
                   >
                     <div>
-                      <FaThumbsUp size={20} color="blue" />
+                      <FaHeart size={20} color="red" />
                     </div>
                     {/* <div>Like</div> */}
                   </div>
