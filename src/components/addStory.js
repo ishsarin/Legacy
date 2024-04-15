@@ -22,7 +22,7 @@ const AddStory = () => {
     let path = "/homepage";
     navigate(path);
     // window.location.href = "/homepage";
-    const res = await fetch("/add_story", {
+    const res = await fetch("https://legacy-f3np.vercel.app/add_story", {
       mode: "no-cors",
       method: "POST",
       headers: {
