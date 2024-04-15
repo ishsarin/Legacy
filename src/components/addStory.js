@@ -19,7 +19,7 @@ const AddStory = () => {
   const [text, setText] = useState("");
   const [relation, setRelation] = useState("");
   const [postbtn, setPostBtn] = useState(false);
-
+  const [imageURL, setImageURL] = useState("");
   const { user } = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ const AddStory = () => {
       text: text,
       name: e.target.name.value,
       relation: relation,
-      file: imgUrl,
+      file: imageURL,
       likes: like,
       comments: [
         {
@@ -96,8 +96,9 @@ const AddStory = () => {
       uploadBytes(imgRef, image).then((snapshot) => {
         return getDownloadURL(imgRef).then((url) => {
           //   // url is the download URL
-          imgUrl = url;
-          console.log(imgUrl);
+          // imgUrl = url;
+          setImageURL(url);
+          console.log(imageURL);
           alert("Image Uploaded!😄");
           setPostBtn(!postbtn);
         });
