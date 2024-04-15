@@ -5,7 +5,8 @@ import NavBar from "./navBar.jsx";
 
 const HomePage = (props) => {
   const fetchData = async (e) => {
-    const res = await fetch("http://localhost:5000/");
+    // const res = await fetch("http://localhost:5000/");
+    const res = await fetch("https://legacy-nxxp.onrender.com/");
     const data = await res.json();
     // console.log(data);
     setInfo(data);
