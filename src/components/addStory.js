@@ -61,7 +61,7 @@ const AddStory = () => {
     e.preventDefault();
     if (image == null) return;
 
-    alert("Please wait for your Image to be Uploaded!");
+    alert("Please wait for the message that your Image is Uploaded!");
     try {
       // const imgRef = storage.child(`img/${image.name}`);
       const imgRef = ref(storage, `images/${image.name}`);
