@@ -24,6 +24,8 @@ const AddStory = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          source: "/manifest.webmanifest",
+
           key: "Access-Control-Allow-Origin",
           value: "*",
         },
@@ -59,10 +61,10 @@ const AddStory = () => {
 
     try {
       // const imgRef = storage.child(`img/${image.name}`);
-      alert("Please wait for your Image to be Uploaded!");
       const imgRef = ref(storage, `images/${image.name}`);
       // imgRef.put(image).then((snapshot) => {
       uploadBytes(imgRef, image).then((snapshot) => {
+        alert("Please wait for your Image to be Uploaded!");
         return getDownloadURL(imgRef).then((url) => {
           //   // url is the download URL
           imgUrl = url;
