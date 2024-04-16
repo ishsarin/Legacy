@@ -112,18 +112,23 @@ const SignIn = () => {
           </button>
         </div>
         <div className="signin-signupbtn">
-          <h6>Don't have account, make one?</h6>
+          <div>
+            <div>
+              <h6>Don't have account, make one?</h6>
+            </div>
+            <div className="signin-guestbtn">
+              <h6>
+                Or continue as
+                <span className="guest-login" onClick={(e) => guestLogin(e)}>
+                  Guest Login
+                </span>
+              </h6>
+            </div>
+          </div>
+
           <Link to="/SignUp">
             <button className="btn signup">SignUp</button>
           </Link>
-        </div>
-        <div className="signin-guestbtn">
-          <h6>
-            Or continue as
-            <span className="guest-login" onClick={(e) => guestLogin(e)}>
-              Guest Login
-            </span>
-          </h6>
         </div>
       </div>
       {/* ) : (

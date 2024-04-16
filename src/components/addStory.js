@@ -112,7 +112,7 @@ const AddStory = () => {
   return (
     <div className="post-details">
       <h1>Post Details</h1>
-      <form onSubmit={handleSubmit} className="mb-2">
+      <form onSubmit={handleSubmit} className="mb-5 post-form">
         <div class="mb-3 p-3 post-caption">
           <label className="form-label p-2" form-label>
             Caption
@@ -128,8 +128,8 @@ const AddStory = () => {
             }}
           ></textarea>
         </div>
-        <div class="mb-3">
-          <label class="form-label p-2">Name</label>
+        <div class="mb-3 post-name">
+          <label class="form-label p-2 ">Name</label>
           <input
             type="text"
             value={user}
@@ -139,7 +139,7 @@ const AddStory = () => {
             name="name"
           />
         </div>
-        <div class="mb-3 ">
+        <div class="mb-3 post-relation">
           <label htmlFor="" form-label className="p-2">
             Relation
           </label>
@@ -153,7 +153,7 @@ const AddStory = () => {
           />
         </div>
         <div class="mb-5">
-          <label htmlFor="" form-label className="p-2">
+          <label htmlFor="" form-label className="p-2 post-upload">
             Share this moment by uploading a picture!!{" "}
           </label>
           <input
