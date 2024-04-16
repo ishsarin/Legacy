@@ -3,6 +3,7 @@ body {
   color: yellow;
 }
 
+// @media (min-width: 760px) {
 .post {
   background-color: #0e1630 !important;
   color: white;
@@ -285,10 +286,9 @@ body {
 .signin-guestbtn {
   display: flex;
   text-align: left;
-  justify-content: center;
+  justify-content: normal;
   align-items: center;
   padding: 5px;
-  margin-left: 5rem;
 }
 .signin-guestbtn {
   margin-left: 0px !important;
@@ -336,4 +336,50 @@ body {
   color: yellow;
   text-decoration: underline;
   cursor: pointer;
+}
+// }
+@media (max-width: 480px) {
+  .navbar {
+    &-header {
+      width: 100% !important;
+    }
+    &-signedin-text {
+      font-size: 13px !important;
+      padding-block: 0px !important;
+    }
+  }
+  .main-header {
+    font-size: medium !important;
+  }
+  .post {
+    width: 95% !important;
+  }
+  .navbar-brand {
+    font-size: 30px;
+  }
+  .btn-signout {
+    padding-block: 0px !important;
+  }
+  .post-name {
+    width: 80%;
+  }
+  .post-relation {
+    width: 75%;
+  }
+  .post-choosefile {
+    width: 60% !important;
+  }
+  .post-upload {
+    padding-block: 2rem !important;
+  }
+  .post-btn {
+    width: 43% !important;
+  }
+  .signin-signupbtn {
+    margin-left: 0px !important;
+  }
+  .signin-signupbtn h6,
+  .signin-guestbtn h6 {
+    margin-right: 0px !important;
+  }
 }
