@@ -4,15 +4,15 @@ const Info = () => {
   return (
     <div className="info container">
       <h4>
-        This website is a place for you to share or view the memories shared by
-        other individuals of people whose Legacy is begin carried on and we
-        cherish the beautiful and the most amazing time spent with them!
+        Welcome to Legacy, a platform dedicated to preserving and sharing
+        cherished memories of loved ones!
       </h4>
       <h4>
-        This is not a social media website, but a place for people to share the
-        memories with their near and dear ones!{" "}
+        It's not your typical social media site; here, we honor and celebrate
+        the beautiful moments spent with those who have left a lasting impact on
+        our lives.
       </h4>
-      <h4>Hope you all like it! 😄</h4>
+      <h4>Hope you like it!😄</h4>
       <div className="signin-signupbtn">
         <Link to="/SignIn">
           <button className="btn signup">SignIn</button>
