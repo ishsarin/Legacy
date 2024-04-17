@@ -23,7 +23,7 @@ const NavBar = () => {
   };
 
   const loginRedirect = () => {
-    let path = "/";
+    let path = "/signIn";
     navigate(path);
   };
 
@@ -31,7 +31,7 @@ const NavBar = () => {
     <>
       <Navbar className="bg-body-tertiary navbar-header">
         <Container className="navbar-container">
-          <Navbar.Brand href="#home" className="navbar-brand">
+          <Navbar.Brand href="#" className="navbar-brand">
             Legacy
           </Navbar.Brand>
           <Navbar.Toggle />

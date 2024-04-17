@@ -209,6 +209,10 @@ body {
     font-weight: 400;
     color: yellow !important;
   }
+  &-brand:hover {
+    cursor: pointer;
+  }
+
   &-container {
     display: flex;
     justify-content: space-between !important;
@@ -337,6 +341,16 @@ body {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.info {
+  margin-top: 5rem;
+  width: 50%;
+  text-align: left;
+}
+.info h4 {
+  margin-block: 2rem;
+}
+
 // }
 @media (max-width: 480px) {
   .navbar {
@@ -356,6 +370,9 @@ body {
   }
   .navbar-brand {
     font-size: 30px;
+  }
+  .navbar-brand:hover {
+    cursor: pointer;
   }
   .btn-signout {
     padding-block: 0px !important;
@@ -381,5 +398,14 @@ body {
   .signin-signupbtn h6,
   .signin-guestbtn h6 {
     margin-right: 0px !important;
+  }
+  .info {
+    margin-top: 5rem;
+    width: 90%;
+    text-align: left;
+  }
+  .info h4 {
+    margin-block: 2rem;
+    font-size: medium !important;
   }
 }
